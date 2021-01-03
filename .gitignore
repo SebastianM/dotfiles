@@ -1,0 +1,5 @@
+*
+!.config/*
+.config/chromium/*
+.config/coc/*
+!.gitignore
