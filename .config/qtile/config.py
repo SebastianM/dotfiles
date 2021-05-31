@@ -59,8 +59,8 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawn("rofi -show"),
         desc="Rofi"),
-    Key([mod], "e", lazy.spawn("chromium"),
-        desc="Chromium"),
+    Key([mod], "e", lazy.spawn("google-chrome-stable"),
+        desc="google-chrome-stable"),
     Key([mod], "p", lazy.spawn("pulsemixer"),
         desc="pulsemixer"),
 ]
@@ -88,19 +88,20 @@ layouts = [
     # layout.Bsp(margin=7),
     # layout.Columns(),
     # layout.Matrix(),
-    layout.MonadTall(margin=10, name='monad', border_normal='1b2128', border_focus='e25987'),
+    layout.MonadTall(margin=10, name='mo', border_normal='1b2128', border_focus='e25987'),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(margin=7, add_after_last=True),
-    layout.Max(),
+    layout.VerticalTile(margin=2, name='vt'),
+    layout.Max(name='ma'),
     # layout.TreeTab(),
-    # layout.VerticalTile(),
+    # layout.Floating(name='fl'),
     # layout.Zoomy(),
 ]
 
 widget_defaults = dict( font='Ubuntu Bold',
     fontsize=12,
-    padding=5,
+    padding=8,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -108,27 +109,24 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(hide_unused=True, block_highlight_text_color='e25987', borderwidth=0, highlight_method='border'),
+                widget.CurrentLayout(padding = 0, scale = 0.6),
+                widget.GroupBox(hide_unused=True, block_highlight_text_color='e25987', borderwidth=1, highlight_method='border'),
+                # widget.Chord(
+                    # chords_colors={
+                        # 'launch': ("#ff0000", "#ffffff"),
+                    # },
+                    # name_transform=lambda name: name.upper(),
+                # ),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
                 widget.Systray(),
-                widget.PulseVolume(limit_max_volume=True),
                 widget.Spacer(length=5),
                 widget.CPU(format='  {freq_current}GHz {load_percent}%'),
-                widget.ThermalSensor(),
                 widget.Memory(),
                 widget.Spacer(length=5),
-                widget.Net(format='{down} \u2193\u2191 {up}'),
+                widget.DF(visible_on_warn=False, format='{uf} {m}'),
                 widget.Spacer(length=5),
-                widget.DF(),
-                widget.Spacer(length=5),
-                widget.Wlan(format='WLAN {percent:2.0%}'),
+                widget.Wlan(format='WIFI {percent:2.0%}'),
+                widget.PulseVolume(limit_max_volume=True),
                 widget.Spacer(length=5),
                 widget.Clock(format='%d.%m.%Y %H:%M:%S'),
                 widget.QuickExit(),
@@ -153,7 +151,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.

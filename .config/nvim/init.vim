@@ -26,6 +26,9 @@ set incsearch
 set ignorecase
 set smartcase
 set diffopt +=iwhite
+" Hybrid line numbers
+set number relativenumber
+set nu rnu
 " Spell checking
 set spell
 set spelllang=de_de,en_us
@@ -40,8 +43,6 @@ call plug#begin()
 " Themes
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
-
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'unblevable/quick-scope'
 Plug 'sheerun/vim-polyglot'
@@ -52,6 +53,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mhinz/vim-startify'
 Plug 'mattn/emmet-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Raimondi/delimitMate'
 
 " Transparency support
 Plug 'miyakogi/seiya.vim'
@@ -65,7 +69,6 @@ source ~/.config/nvim/plugins/quickscope.vim
 
 " Transparency support
 let g:seiya_auto_enable=1
-
 
 " Key bindings
 nnoremap <silent> <C-p> :GFiles<CR>
