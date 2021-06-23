@@ -56,6 +56,9 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Transparency support
 Plug 'miyakogi/seiya.vim'
@@ -71,10 +74,13 @@ source ~/.config/nvim/plugins/quickscope.vim
 let g:seiya_auto_enable=1
 
 " Key bindings
-nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-p> <cmd>Telescope find_files<cr>
+" nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-n> :CocCommand explorer<CR>
 nnoremap <silent> <C-K> :GoImports<CR>:GoBuild<CR>
-nnoremap <silent> == :Buffers<CR>
-nnoremap <silent> ?? :Rg!<CR>
+" nnoremap <silent> == :Buffers<CR>
+nnoremap <silent>== <cmd>Telescope buffers<cr>
+nnoremap <silent> ?? <cmd>Telescope live_grep<CR>
+
 noremap <silent> <C-S-Left> :vertical resize -1<CR>
 noremap <silent> <C-S-Right> :vertical resize +1<CR>
